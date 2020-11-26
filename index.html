@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <script src="lib-js/aframe-v1.0.4.min.js"></script>
+  <script src="lib-js/aframe-text-geometry-component.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="lib-js/aframe-ar.js"></script>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <script src="index.js"></script>
+
+  <body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs='detectionMode: mono_and_matrix; matrixCodeType: 4x4_BCH_13_5_5;'>
+
+      <a-assets>
+        <!-- Character Cards -->
+        <a-asset-item id="tailsdoll" src="models-gltf/TailsDoll.gltf"></a-asset-item>
+        <a-asset-item id="emeraldshard" src="models-gltf/EmeraldPiece.gltf"></a-asset-item>
+        <a-asset-item id="grayfox" src="models-gltf/GrayFoxLightFix.glb"></a-asset-item>
+        <a-asset-item id="wiifittrainer" src="models-gltf/WiiFitTrainerLightFix.glb"></a-asset-item>
+        <a-asset-item id="akiraasset" src="models-gltf/AkiraLightFix.glb"></a-asset-item>
+        <a-asset-item id="falco-obj" src="models-obj/falco/DolFalcoR1.obj"></a-asset-item>
+        <a-asset-item id="falco-mtl" src="models-obj/falco/DolFalcoR1.mtl"></a-asset-item>
+        <a-asset-item id="knuckles-obj" src="models-obj/knuckles/Knuckles.obj"></a-asset-item>
+        <a-asset-item id="knuckles-mtl" src="models-obj/knuckles/Knuckles.mtl"></a-asset-item>
+        <!-- <a-asset-item id="kkslider-obj" src="models-obj/kkslider/KK Slider.obj"></a-asset-item>
+        <a-asset-item id="kkslider-mtl" src="models-obj/kkslider/KK Slider.mtl"></a-asset-item> <!-- -->
+
+        <!-- Vaporwave stuff -->
+        <img id="pink" src="img/1hyyIUi.jpg" />
+        <img src="img/25P1geh.png" id="grid" />
+        <img src="img/WMNH2OF.jpg" id="chrome" />
+        <img id="sky" src="img/WqlqEkq.jpg" />
+        <a-asset-item id="dawningFont" src="fonts/dawningOfANewDayRegular.typeface.json"></a-asset-item>
+        <a-asset-item id="exoFont" src="fonts/exo2Black.typeface.json"></a-asset-item>
+        <a-asset-item id="exoItalicFont" src="fonts/exo2BlackItalic.typeface.json"></a-asset-item>
+
+        <!-- Background -->
+        <video id="myvideo" autoplay loop="true" src="video/message.mp4"></video>
+      </a-assets>
+
+      <!-- Message -->
+      <a-marker type="barcode" value="0">
+
+        <a-entity>
+          <a-text
+            rotation="0 0 0" position="0 2.2 0" scale="5 5 5"
+            value="Happy Birthday Bro!"
+            material="color: #03f" shader="msdf" font="mozillavr"
+            align="center" anchor="align" width="2" letter-spacing="0"
+          ></a-text>
+
+          <a-text
+            rotation="0 0 0" position="0 2.2 -0.1" scale="6 6 6"
+            value="Happy Birthday Bro!" color="#000"
+            material="color: #000" shader="msdf" font="mozillavr"
+            align="center" anchor="align" width="2" letter-spacing="-7"></a-text>
+
+          <a-entity position="0 1 0" rotation="-30 0 0" scale="0.2 0.2 0.2">
+            <a-entity
+              rotation="0 0 0" position="0 0 0"
+              geometry="primitive: plane; width: 11; height: 4;"
+              material="color: #ea2;"
+            >
+              <a-entity
+                rotation="0 0 0" position="0 0 -0.1"
+                geometry="primitive: plane; width: 11.5; height: 4.5;"
+                material="color: #000; side: double;"
+              ></a-entity>
+
+              <a-text
+                rotation="0 0 0" position="-4.5 -0.5 0" scale="6 6 6"
+                value="AARON grew \n to level 34!" color="black"
+                material="color: #000" shader="msdf" font="fonts/PressStart2P-Regular.json"
+                align="left" anchor="align" width="4.5" line-height="80"
+              ></a-text>
+
+              <a-text
+                rotation="0 0 -90" position="4 -1.3 0" scale="6 6 6"
+                value=">" color="black"
+                material="color: #000" shader="msdf" font="fonts/PressStart2P-Regular.json"
+                align="center" anchor="align" width="4.5" line-height="80"
+              ></a-text>
+            </a-entity>
+          </a-entity>
+
+      </a-marker>
+
+      <!-- Character cards -->
+      <a-light type="ambient" color="#fff" intensity="2.0"></a-light>
+
+      <a-marker type="barcode" value="1">
+        <a-obj-model id="falco" position="0 0 0"
+                    scale="0.2 0.2 0.2" rotation="0 0 0"
+                    src="#falco-obj" mtl="#falco-mtl"></a-obj-model>
+      </a-marker>
+
+      <a-marker type="barcode" value="2">
+        <a-gltf-model id="gray-fox" src="#grayfox"
+                  position="0 0 0" rotation="0 0 0" scale="8 8 8"
+                  animation-mixer="clip: IdleStill; duration: 10;"
+                  visible="true"
+                  ></a-gltf-model>
+        <!-- clip names: Idle, IdleStill, Dance, CoolFlip -->
+      </a-marker>
+
+      <a-marker type="barcode" value="3">
+        <a-obj-model id="knuckles" position="0 0 -1"
+                    scale="0.15 0.15 0.15" rotation="0 0 0"
+                    src="#knuckles-obj" mtl="#knuckles-mtl"></a-obj-model>
+      </a-marker>
+
+      <a-marker type="barcode" value="4">
+        <a-gltf-model id="wii-fit-trainer" src="#wiifittrainer"
+                      position="0 0 0" rotation="0 0 0" scale="0.15 0.15 0.15"
+                      animation-mixer="clip: Idle;"
+                      visible="true"
+                      ></a-gltf-model>
+        <!-- clip names: Idle, Stretch, Hops, Dance -->
+      </a-marker>
+
+      <a-marker type="barcode" value="5">
+        <a-gltf-model id="akira" src="#akiraasset"
+                      position="0 0 0" rotation="0 0 0" scale="7 7 7"
+                      animation-mixer="clip: Idle;"
+                      visible="true"
+                      ></a-gltf-model>
+        <!-- clip names: Idle, Punches, Flex, Dance -->
+      </a-marker>
+
+      <a-marker type="barcode" value="5">
+        <a-gltf-model id="tailsdoll" position="0 0 0"
+                    scale="0.1 0.1 0.1" rotation="0 0 0"
+                    src="#tailsdoll"></a-gltf-model>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+</html>
